@@ -3,8 +3,9 @@ import DeveloperCard from './DeveloperCard'
 
 export default function DeveloperExcuses(props) {
     const {excuses} = props
-
+    
   return (
+
     <ul className='main'>
         {excuses.map((excuse, excuseIndex) => {
             return (

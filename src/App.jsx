@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react"
 import DeveloperExcuses from "./components/DeveloperExcuses"
 import DeveloperInput from "./components/DeveloperInput"
+import DeveloperGif from "./components/DeveloperGif"
 
 function App() {
 
-  const [excuses, setExcuses] = useState([])
+  const [excuses, setExcuses] = useState([''])
   const [excuseValue, setExcuseValue] = useState('')
 
   function persistData(newList) {
-    localStorage.setItem('excuses', JSON.stringify({ excuses: 
-      newList
+    localStorage.setItem('excuses', JSON.stringify({
+      excuses:
+        newList
     }))
   }
 
@@ -19,7 +21,7 @@ function App() {
     setExcuses(newExcuseList)
   }
 
-  function handleDeleteExcuse(index){
+  function handleDeleteExcuse(index) {
     const newExcuseList = excuses.filter((excuse, excuseIndex) => {
       return excuseIndex !== index
     })
@@ -27,7 +29,7 @@ function App() {
     setExcuses(newExcuseList)
   }
 
-  function handleEditExcuse(index){
+  function handleEditExcuse(index) {
     const valueToBeEdited = excuses[index]
     setExcuseValue(valueToBeEdited)
     handleDeleteExcuse(index)
@@ -38,7 +40,7 @@ function App() {
       return
 
     let localExcuses = localStorage.getItem('excuses')
-    if(!localExcuses)
+    if (!localExcuses)
       return
 
     localExcuses = JSON.parse(localExcuses).excuses
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <>
+      <DeveloperGif />
       <DeveloperInput handleAddExcuses={handleAddExcuses} excuseValue={excuseValue} setExcuseValue={setExcuseValue} />
       <DeveloperExcuses handleDeleteExcuse={handleDeleteExcuse} excuses={excuses} handleEditExcuse={handleEditExcuse} />
     </>
